@@ -24,8 +24,8 @@ import java.util.List;
 @Table(name = "user")
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String name;
     private String surname;
     private String email;
@@ -41,7 +41,7 @@ public class User implements UserDetails {
     private Role role;
     private String avatar;
 
-    public User(String name, String surname, String email, String password, LocalDate date_of_birth, Gender gender, Physical_activity physical_activity, String nationality, String city_of_residence, String avatar) {
+    public User(String name, String surname, String email, String password, LocalDate date_of_birth, Gender gender, Physical_activity physical_activity, String nationality, String city_of_residence) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -52,7 +52,6 @@ public class User implements UserDetails {
         this.nationality = nationality;
         this.city_of_residence = city_of_residence;
         this.role = Role.USER;
-        this.avatar = avatar;
     }
 
     @Override

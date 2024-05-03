@@ -22,13 +22,10 @@ public record UserDTO(
         String email,
         @NotEmpty(message = "Password cannot be empty")
         String password,
-        @NotEmpty(message = "Date of birth cannot be empty")
         @NotNull(message = "Date of birth cannot be null")
         LocalDate date_of_birth,
-        @NotEmpty(message = "Gender cannot be empty")
         @NotNull(message = "Gender cannot be null")
         Gender gender,
-        @NotEmpty(message = "Physical activity cannot be empty")
         @NotNull(message = "Physical activity cannot be null")
         Physical_activity physical_activity,
         @NotEmpty(message = "Nationality cannot be empty")

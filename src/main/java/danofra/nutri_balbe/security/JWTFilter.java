@@ -16,7 +16,6 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.UUID;
 
 @Component
 public class JWTFilter extends OncePerRequestFilter {
@@ -34,7 +33,7 @@ public class JWTFilter extends OncePerRequestFilter {
             throw new UnauthorizedException("Please insert the token in the Authorization Header");
         String accessToken = authHeader.substring(7);
         String id = jwtTools.extractIdFromToken(accessToken);
-        User currentUser = this.userService.findById(UUID.fromString(id));
+        User currentUser = this.userService.findById(Integer.parseInt(id));
         Authentication authentication = new UsernamePasswordAuthenticationToken(currentUser, null, currentUser.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request, response);

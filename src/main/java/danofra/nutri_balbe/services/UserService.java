@@ -65,8 +65,8 @@ public class UserService {
         return this.userDAO.findByEmail(email).orElseThrow(() -> new NotFoundException("User with email " + email + " not found!"));
     }
 
-    public void findByIdAndDelete(int id) {
-        User user = this.findById(id);
+    public void findByEmailAndDelete(String email) {
+        User user = this.findByEmail(email);
         this.userDAO.delete(user);
     }
 

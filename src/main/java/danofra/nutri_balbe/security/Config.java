@@ -2,6 +2,7 @@ package danofra.nutri_balbe.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -25,6 +26,7 @@ public class Config {
         httpsecurity.csrf(http -> http.disable());
         httpsecurity.sessionManagement(http -> http.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         httpsecurity.authorizeHttpRequests(http -> http.requestMatchers("/**").permitAll());
+        httpsecurity.cors(Customizer.withDefaults());
         return httpsecurity.build();
     }
 

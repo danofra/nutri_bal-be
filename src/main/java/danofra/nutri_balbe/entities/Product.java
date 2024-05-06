@@ -21,7 +21,7 @@ public class Product {
     private int kcal;
     private String image;
     @OneToMany(mappedBy = "product")
-    private List<FoodStorageQuantity> food_storage_quantity;
+    private List<FoodStorageQuantity> foodStorageQuantity;
 
     public Product(String name, String description, int kcal, String image) {
         this.name = name;

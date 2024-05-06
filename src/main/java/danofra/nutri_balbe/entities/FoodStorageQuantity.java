@@ -16,15 +16,15 @@ public class FoodStorageQuantity {
     private int id;
     @ManyToOne
     @JoinColumn(name = "food_storage_id")
-    private FoodStorage food_storage;
+    private FoodStorage foodStorage;
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
     private int quantity;
 
-    public FoodStorageQuantity(int quantity, Product product, FoodStorage food_storage) {
+    public FoodStorageQuantity(int quantity, Product product, FoodStorage foodStorage) {
         this.quantity = quantity;
         this.product = product;
-        this.food_storage = food_storage;
+        this.foodStorage = foodStorage;
     }
 }

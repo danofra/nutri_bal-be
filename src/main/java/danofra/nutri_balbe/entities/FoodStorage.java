@@ -20,8 +20,8 @@ public class FoodStorage {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToMany(mappedBy = "food_storage")
-    private List<FoodStorageQuantity> food_storage_quantity;
+    @OneToMany(mappedBy = "foodStorage")
+    private List<FoodStorageQuantity> foodStorageQuantity;
 
     public FoodStorage(User user) {
         this.user = user;

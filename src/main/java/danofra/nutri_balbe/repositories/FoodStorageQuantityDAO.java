@@ -11,6 +11,6 @@ public interface FoodStorageQuantityDAO extends JpaRepository<FoodStorageQuantit
 
     List<FoodStorageQuantity> findByFoodStorageId(int id);
 
-    Page<FoodStorageQuantity> findByFoodStorageIdPage(int id, Pageable pageable);
+    Page<FoodStorageQuantity> findByFoodStorageId(int foodStorageId, Pageable pageable);
 
 }

@@ -41,6 +41,8 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
     private String avatar;
+    @OneToOne(mappedBy = "user")
+    private FoodStorage food_storage;
 
     public User(String name, String surname, String email, String password, LocalDate date_of_birth, Gender gender, Physical_activity physical_activity, String nationality, String city_of_residence) {
         this.name = name;

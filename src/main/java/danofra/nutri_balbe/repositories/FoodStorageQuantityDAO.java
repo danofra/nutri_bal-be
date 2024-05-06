@@ -1,0 +1,16 @@
+package danofra.nutri_balbe.repositories;
+
+import danofra.nutri_balbe.entities.FoodStorageQuantity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface FoodStorageQuantityDAO extends JpaRepository<FoodStorageQuantity, Integer> {
+
+    List<FoodStorageQuantity> findByFoodStorageId(int id);
+
+    Page<FoodStorageQuantity> findByFoodStorageIdPage(int id, Pageable pageable);
+
+}

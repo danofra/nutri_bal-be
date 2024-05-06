@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -18,6 +20,8 @@ public class Product {
     private String description;
     private int kcal;
     private String image;
+    @OneToMany(mappedBy = "product")
+    private List<FoodStorageQuantity> food_storage_quantity;
 
     public Product(String name, String description, int kcal, String image) {
         this.name = name;

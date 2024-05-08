@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface FoodStorageQuantityDAO extends JpaRepository<FoodStorageQuantity, Integer> {
 
@@ -13,4 +14,5 @@ public interface FoodStorageQuantityDAO extends JpaRepository<FoodStorageQuantit
 
     Page<FoodStorageQuantity> findByFoodStorageId(int foodStorageId, Pageable pageable);
 
+    Optional<FoodStorageQuantity> findByFoodStorageIdAndProductId(int foodStorageId, int productId);
 }

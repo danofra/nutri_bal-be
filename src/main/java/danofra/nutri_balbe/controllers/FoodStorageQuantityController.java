@@ -5,6 +5,7 @@ import danofra.nutri_balbe.entities.User;
 import danofra.nutri_balbe.services.FoodStorageQuantityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +36,7 @@ public class FoodStorageQuantityController {
     }
 
     @DeleteMapping("/me")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteFoodStorageQuantity(@AuthenticationPrincipal User user,
                                           @RequestParam int productId) {
         foodStorageQuantityService.findByUserIdAndProductIdAndDelete(user.getId(), productId);

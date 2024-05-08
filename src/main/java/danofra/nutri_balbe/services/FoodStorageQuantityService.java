@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FoodStorageQuantityService {
@@ -30,8 +31,15 @@ public class FoodStorageQuantityService {
 
     public FoodStorageQuantityResponseDTO save(int userId, int quantity, int productId) {
         FoodStorage foodStorage = foodStorageService.findByUserId(userId);
-        Product product = productDAO.findById(productId).orElseThrow(() -> new BadRequestException("Product whit id " + productId + " does not exist!"));
-        FoodStorageQuantity foodStorageQuantity = new FoodStorageQuantity(quantity, product, foodStorage);
+        Product product = productDAO.findById(productId).orElseThrow(() -> new BadRequestException("Product with id " + productId + " does not exist!"));
+        Optional<FoodStorageQuantity> existingFoodStorageQuantity = foodStorageQuantityDAO.findByFoodStorageIdAndProductId(foodStorage.getId(), productId);
+        FoodStorageQuantity foodStorageQuantity;
+        if (existingFoodStorageQuantity.isPresent()) {
+            foodStorageQuantity = existingFoodStorageQuantity.get();
+            foodStorageQuantity.setQuantity(foodStorageQuantity.getQuantity() + quantity);
+        } else {
+            foodStorageQuantity = new FoodStorageQuantity(quantity, product, foodStorage);
+        }
         foodStorageQuantityDAO.save(foodStorageQuantity);
         return new FoodStorageQuantityResponseDTO(foodStorageQuantity.getQuantity(), foodStorageQuantity.getProduct().getName());
     }

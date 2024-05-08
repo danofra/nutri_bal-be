@@ -1,5 +1,6 @@
 package danofra.nutri_balbe.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ public class FoodStorageQuantity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "food_storage_id")
     private FoodStorage foodStorage;

@@ -1,5 +1,6 @@
 package danofra.nutri_balbe.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ public class Product {
     private String description;
     private int kcal;
     private String image;
+    @JsonIgnore
     @OneToMany(mappedBy = "product")
     private List<FoodStorageQuantity> foodStorageQuantity;
 

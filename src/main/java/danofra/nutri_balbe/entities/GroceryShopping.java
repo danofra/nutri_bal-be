@@ -6,14 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Setter
 @Getter
 @NoArgsConstructor
 @Entity
-@Table(name = "food_storage")
-public class FoodStorage {
+@Table(name = "grocery_shopping")
+public class GroceryShopping {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -21,10 +19,9 @@ public class FoodStorage {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToMany(mappedBy = "foodStorage")
-    private List<FoodStorageQuantity> foodStorageQuantity;
 
-    public FoodStorage(User user) {
+
+    public GroceryShopping(User user) {
         this.user = user;
     }
 }

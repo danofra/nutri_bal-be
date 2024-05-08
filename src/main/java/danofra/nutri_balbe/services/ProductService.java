@@ -26,6 +26,7 @@ public class ProductService {
         }
         Product product = new Product();
         product.setName(newProduct.name());
+        product.setCategory(newProduct.category());
         product.setDescription(newProduct.description());
         product.setKcal(newProduct.kcal());
         product.setImage(newProduct.image());

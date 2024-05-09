@@ -20,7 +20,7 @@ public class GroceryShoppingQuantity {
     @JoinColumn(name = "grocery_shopping_id")
     private GroceryShopping groceryShopping;
     @ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_name")
     private Product product;
     private int quantity;
 

@@ -20,7 +20,7 @@ public class FoodStorageQuantity {
     @JoinColumn(name = "food_storage_id")
     private FoodStorage foodStorage;
     @ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_name")
     private Product product;
     private int quantity;
 

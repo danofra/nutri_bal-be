@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -29,10 +30,10 @@ public class FoodStorageQuantityService {
     @Autowired
     private ProductDAO productDAO;
 
-    public FoodStorageQuantityResponseDTO save(int userId, int quantity, int productId) {
+    public FoodStorageQuantityResponseDTO save(int userId, int quantity, String productName) {
         FoodStorage foodStorage = foodStorageService.findByUserId(userId);
-        Product product = productDAO.findById(productId).orElseThrow(() -> new BadRequestException("Product with id " + productId + " does not exist!"));
-        Optional<FoodStorageQuantity> existingFoodStorageQuantity = foodStorageQuantityDAO.findByFoodStorageIdAndProductId(foodStorage.getId(), productId);
+        Product product = productDAO.findById(productName).orElseThrow(() -> new BadRequestException("Product with id " + productName + " does not exist!"));
+        Optional<FoodStorageQuantity> existingFoodStorageQuantity = foodStorageQuantityDAO.findByFoodStorageIdAndProductName(foodStorage.getId(), productName);
         FoodStorageQuantity foodStorageQuantity;
         if (existingFoodStorageQuantity.isPresent()) {
             foodStorageQuantity = existingFoodStorageQuantity.get();
@@ -50,13 +51,13 @@ public class FoodStorageQuantityService {
         return this.foodStorageQuantityDAO.findByFoodStorageId(foodStorageService.findByUserId(userId).getId(), pageable);
     }
 
-    public FoodStorageQuantityResponseDTO findByUserIdAndProductIdAndUpdateQuantity(int userId, int productId, int quantity) {
+    public FoodStorageQuantityResponseDTO findByUserIdAndProductIdAndUpdateQuantity(int userId, String productName, int quantity) {
         FoodStorage foodStorage = foodStorageService.findByUserId(userId);
-        Product product = productDAO.findById(productId).orElseThrow(() -> new BadRequestException("Product whit id " + productId + " does not exist!"));
+        Product product = productDAO.findById(productName).orElseThrow(() -> new BadRequestException("Product whit id " + productName + " does not exist!"));
         List<FoodStorageQuantity> foodStorageQuantity = this.foodStorageQuantityDAO.findByFoodStorageId(foodStorage.getId());
         FoodStorageQuantityResponseDTO response = null;
         for (FoodStorageQuantity foodStorageQuantity1 : foodStorageQuantity) {
-            if (foodStorageQuantity1.getProduct().getId() == productId) {
+            if ((foodStorageQuantity1.getProduct().getName() == productName)) {
                 foodStorageQuantity1.setQuantity(quantity);
                 foodStorageQuantityDAO.save(foodStorageQuantity1);
                 response = new FoodStorageQuantityResponseDTO(foodStorageQuantity1.getQuantity(), foodStorageQuantity1.getProduct().getName());
@@ -65,12 +66,12 @@ public class FoodStorageQuantityService {
         return response;
     }
 
-    public void findByUserIdAndProductIdAndDelete(int userId, int productId) {
+    public void findByUserIdAndProductIdAndDelete(int userId, String productName) {
         FoodStorage foodStorage = foodStorageService.findByUserId(userId);
-        Product product = productDAO.findById(productId).orElseThrow(() -> new BadRequestException("Product whit id " + productId + " does not exist!"));
+        Product product = productDAO.findById(productName).orElseThrow(() -> new BadRequestException("Product whit id " + productName + " does not exist!"));
         List<FoodStorageQuantity> foodStorageQuantity = this.foodStorageQuantityDAO.findByFoodStorageId(foodStorage.getId());
         for (FoodStorageQuantity foodStorageQuantity1 : foodStorageQuantity) {
-            if (foodStorageQuantity1.getProduct().getId() == productId) {
+            if (Objects.equals(foodStorageQuantity1.getProduct().getName(), productName)) {
                 foodStorageQuantityDAO.delete(foodStorageQuantity1);
             }
         }

@@ -14,5 +14,5 @@ public interface GroceryShoppingQuantityDAO extends JpaRepository<GroceryShoppin
 
     Page<GroceryShoppingQuantity> findByGroceryShoppingId(int groceryShoppingId, Pageable pageable);
 
-    Optional<GroceryShoppingQuantity> findByGroceryShoppingIdAndProductId(int groceryShoppingId, int productId);
+    Optional<GroceryShoppingQuantity> findByGroceryShoppingIdAndProductName(int groceryShoppingId, String productName);
 }

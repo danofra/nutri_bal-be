@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -28,16 +29,19 @@ public class GroceryShoppingQuantityService {
     @Autowired
     private ProductDAO productDAO;
 
-    public GroceryShoppingQuantityResponseDTO save(int userId, int quantity, int productId) {
+    public GroceryShoppingQuantityResponseDTO save(int userId, int quantity, String productName) {
         GroceryShopping groceryShopping = groceryShoppingService.findByUserId(userId);
-        Product product = productDAO.findById(productId).orElseThrow(() -> new BadRequestException("Product whit id " + productId + " does not exist!"));
-        Optional<GroceryShoppingQuantity> existingGroceryShoppingQuantity = groceryShoppingQuantityDAO.findByGroceryShoppingIdAndProductId(groceryShopping.getId(), productId);
+        Product product = productDAO.findById(productName).orElseThrow(() -> new BadRequestException("Product whit id " + productName + " does not exist!"));
+        Optional<GroceryShoppingQuantity> existingGroceryShoppingQuantity = groceryShoppingQuantityDAO.findByGroceryShoppingIdAndProductName(groceryShopping.getId(), productName);
         GroceryShoppingQuantity groceryShoppingQuantity;
         if (existingGroceryShoppingQuantity.isPresent()) {
             groceryShoppingQuantity = existingGroceryShoppingQuantity.get();
             groceryShoppingQuantity.setQuantity(groceryShoppingQuantity.getQuantity() + quantity);
         } else {
-            groceryShoppingQuantity = new GroceryShoppingQuantity(quantity, product, groceryShopping);
+            groceryShoppingQuantity = new GroceryShoppingQuantity();
+            groceryShoppingQuantity.setGroceryShopping(groceryShopping);
+            groceryShoppingQuantity.setProduct(product);
+            groceryShoppingQuantity.setQuantity(quantity);
         }
         groceryShoppingQuantityDAO.save(groceryShoppingQuantity);
         return new GroceryShoppingQuantityResponseDTO(groceryShoppingQuantity.getQuantity(), groceryShoppingQuantity.getProduct().getName());
@@ -49,13 +53,13 @@ public class GroceryShoppingQuantityService {
         return this.groceryShoppingQuantityDAO.findByGroceryShoppingId(groceryShoppingService.findByUserId(userId).getId(), pageable);
     }
 
-    public GroceryShoppingQuantityResponseDTO findByUserIdAndProductIdAndUpdateQuantity(int userId, int productId, int quantity) {
+    public GroceryShoppingQuantityResponseDTO findByUserIdAndProductIdAndUpdateQuantity(int userId, String productName, int quantity) {
         GroceryShopping groceryShopping = groceryShoppingService.findByUserId(userId);
-        Product product = productDAO.findById(productId).orElseThrow(() -> new BadRequestException("Product whit id " + productId + " does not exist!"));
+        Product product = productDAO.findById(productName).orElseThrow(() -> new BadRequestException("Product whit id " + productName + " does not exist!"));
         List<GroceryShoppingQuantity> groceryShoppingQuantity = this.groceryShoppingQuantityDAO.findByGroceryShoppingId(groceryShopping.getId());
         GroceryShoppingQuantityResponseDTO response = null;
         for (GroceryShoppingQuantity groceryShoppingQuantity1 : groceryShoppingQuantity) {
-            if (groceryShoppingQuantity1.getProduct().getId() == productId) {
+            if ((groceryShoppingQuantity1.getProduct().getName() == productName)) {
                 groceryShoppingQuantity1.setQuantity(quantity);
                 groceryShoppingQuantityDAO.save(groceryShoppingQuantity1);
                 response = new GroceryShoppingQuantityResponseDTO(groceryShoppingQuantity1.getQuantity(), groceryShoppingQuantity1.getProduct().getName());
@@ -64,12 +68,12 @@ public class GroceryShoppingQuantityService {
         return response;
     }
 
-    public void findByUserIdAndProductIdAndDelete(int userId, int productId) {
+    public void findByUserIdAndProductIdAndDelete(int userId, String productName) {
         GroceryShopping groceryShopping = groceryShoppingService.findByUserId(userId);
-        Product product = productDAO.findById(productId).orElseThrow(() -> new BadRequestException("Product whit id " + productId + " does not exist!"));
+        Product product = productDAO.findById(productName).orElseThrow(() -> new BadRequestException("Product whit id " + productName + " does not exist!"));
         List<GroceryShoppingQuantity> groceryShoppingQuantity = this.groceryShoppingQuantityDAO.findByGroceryShoppingId(groceryShopping.getId());
         for (GroceryShoppingQuantity groceryShoppingQuantity1 : groceryShoppingQuantity) {
-            if (groceryShoppingQuantity1.getProduct().getId() == productId) {
+            if (Objects.equals(groceryShoppingQuantity1.getProduct().getName(), productName)) {
                 groceryShoppingQuantityDAO.delete(groceryShoppingQuantity1);
             }
         }

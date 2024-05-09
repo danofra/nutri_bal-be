@@ -1,6 +1,8 @@
 package danofra.nutri_balbe.controllers;
 
 import danofra.nutri_balbe.entities.Product;
+import danofra.nutri_balbe.payloads.ProductDTO;
+import danofra.nutri_balbe.payloads.ProductResponseDTO;
 import danofra.nutri_balbe.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,10 +23,16 @@ public class ProductController {
         return this.productService.getProduct(page, size, sortBy);
     }
 
+    @PostMapping("")
+    public ProductResponseDTO saveProduct(@RequestBody ProductDTO product) {
+        return this.productService.save(product);
+    }
+
     @GetMapping("/{productName}")
     public Product findByName(@PathVariable String productName) {
         return this.productService.findByName(productName);
     }
+
 
     @DeleteMapping("/{productName}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

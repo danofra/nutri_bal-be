@@ -16,8 +16,8 @@ public class FoodStorageQuantityController {
     private FoodStorageQuantityService foodStorageQuantityService;
 
     @PostMapping("/me")
-    public void saveFoodStorageQuantity(@AuthenticationPrincipal User user, @RequestParam int quantity, @RequestParam int productId) {
-        foodStorageQuantityService.save(user.getId(), quantity, productId);
+    public void saveFoodStorageQuantity(@AuthenticationPrincipal User user, @RequestParam int quantity, @RequestParam String productName) {
+        foodStorageQuantityService.save(user.getId(), quantity, productName);
     }
 
     @GetMapping("/me")
@@ -28,17 +28,17 @@ public class FoodStorageQuantityController {
         return foodStorageQuantityService.findByUserId(user.getId(), page, size, sortBy);
     }
 
-    @PatchMapping("/me")
+    @PutMapping("/me")
     public void updateFoodStorageQuantity(@AuthenticationPrincipal User user,
-                                          @RequestParam int productId,
+                                          @RequestParam String productName,
                                           @RequestParam int quantity) {
-        foodStorageQuantityService.findByUserIdAndProductIdAndUpdateQuantity(user.getId(), productId, quantity);
+        foodStorageQuantityService.findByUserIdAndProductIdAndUpdateQuantity(user.getId(), productName, quantity);
     }
 
     @DeleteMapping("/me")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteFoodStorageQuantity(@AuthenticationPrincipal User user,
-                                          @RequestParam int productId) {
-        foodStorageQuantityService.findByUserIdAndProductIdAndDelete(user.getId(), productId);
+                                          @RequestParam String productName) {
+        foodStorageQuantityService.findByUserIdAndProductIdAndDelete(user.getId(), productName);
     }
 }

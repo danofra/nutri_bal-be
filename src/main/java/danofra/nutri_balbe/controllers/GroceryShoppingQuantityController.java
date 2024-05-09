@@ -2,6 +2,7 @@ package danofra.nutri_balbe.controllers;
 
 import danofra.nutri_balbe.entities.GroceryShoppingQuantity;
 import danofra.nutri_balbe.entities.User;
+import danofra.nutri_balbe.payloads.GroceryShoppingQuantityResponseDTO;
 import danofra.nutri_balbe.services.GroceryShoppingQuantityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,8 +17,8 @@ public class GroceryShoppingQuantityController {
     private GroceryShoppingQuantityService groceryShoppingQuantityService;
 
     @PostMapping("/me")
-    public void saveGroceryShoppingQuantity(@AuthenticationPrincipal User user, @RequestParam int quantity, @RequestParam int productId) {
-        groceryShoppingQuantityService.save(user.getId(), quantity, productId);
+    public GroceryShoppingQuantityResponseDTO saveGroceryShoppingQuantity(@AuthenticationPrincipal User user, @RequestParam int quantity, @RequestParam String productName) {
+        return groceryShoppingQuantityService.save(user.getId(), quantity, productName);
     }
 
     @GetMapping("/me")
@@ -28,17 +29,17 @@ public class GroceryShoppingQuantityController {
         return groceryShoppingQuantityService.findByUserId(user.getId(), page, size, sortBy);
     }
 
-    @PatchMapping("/me")
+    @PutMapping("/me/{productName}")
     public void updateGroceryShoppingQuantity(@AuthenticationPrincipal User user,
-                                              @RequestParam int productId,
+                                              @PathVariable String productName,
                                               @RequestParam int quantity) {
-        groceryShoppingQuantityService.findByUserIdAndProductIdAndUpdateQuantity(user.getId(), productId, quantity);
+        groceryShoppingQuantityService.findByUserIdAndProductIdAndUpdateQuantity(user.getId(), productName, quantity);
     }
 
     @DeleteMapping("/me")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteGroceryShoppingQuantity(@AuthenticationPrincipal User user,
-                                              @RequestParam int productId) {
-        groceryShoppingQuantityService.findByUserIdAndProductIdAndDelete(user.getId(), productId);
+                                              @RequestParam String productName) {
+        groceryShoppingQuantityService.findByUserIdAndProductIdAndDelete(user.getId(), productName);
     }
 }

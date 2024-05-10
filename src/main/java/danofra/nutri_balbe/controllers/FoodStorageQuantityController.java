@@ -28,11 +28,11 @@ public class FoodStorageQuantityController {
         return foodStorageQuantityService.findByUserId(user.getId(), page, size, sortBy);
     }
 
-    @PutMapping("/me")
+    @PutMapping("/me/{productName}")
     public void updateFoodStorageQuantity(@AuthenticationPrincipal User user,
-                                          @RequestParam String productName,
+                                          @PathVariable String productName,
                                           @RequestParam int quantity) {
-        foodStorageQuantityService.findByUserIdAndProductIdAndUpdateQuantity(user.getId(), productName, quantity);
+        foodStorageQuantityService.findByUserIdAndProductNameAndUpdateQuantity(user.getId(), productName, quantity);
     }
 
     @DeleteMapping("/me")

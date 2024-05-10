@@ -15,7 +15,9 @@ public class GroceryShoppingService {
 
     public GroceryShoppingResponseDTO save(User userId) {
         GroceryShopping groceryShopping = new GroceryShopping(userId);
-        groceryShoppingDAO.save(groceryShopping);
+        if (groceryShoppingDAO.findByUserId(userId.getId()).isEmpty()) {
+            groceryShoppingDAO.save(groceryShopping);
+        }
         return new GroceryShoppingResponseDTO(userId.getName(), userId.getSurname(), groceryShopping.getId());
     }
 

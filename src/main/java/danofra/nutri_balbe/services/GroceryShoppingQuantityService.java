@@ -53,7 +53,7 @@ public class GroceryShoppingQuantityService {
         return this.groceryShoppingQuantityDAO.findByGroceryShoppingId(groceryShoppingService.findByUserId(userId).getId(), pageable);
     }
 
-    public GroceryShoppingQuantityResponseDTO findByUserIdAndProductIdAndUpdateQuantity(int userId, String productName, int quantity) {
+    public GroceryShoppingQuantityResponseDTO findByUserIdAndProductNameAndUpdateQuantity(int userId, String productName, int quantity) {
         GroceryShopping groceryShopping = groceryShoppingService.findByUserId(userId);
         Product product = productDAO.findById(productName).orElseThrow(() -> new BadRequestException("Product whit id " + productName + " does not exist!"));
         List<GroceryShoppingQuantity> groceryShoppingQuantity = this.groceryShoppingQuantityDAO.findByGroceryShoppingId(groceryShopping.getId());
@@ -68,7 +68,7 @@ public class GroceryShoppingQuantityService {
         return response;
     }
 
-    public void findByUserIdAndProductIdAndDelete(int userId, String productName) {
+    public void findByUserIdAndProductNameAndDelete(int userId, String productName) {
         GroceryShopping groceryShopping = groceryShoppingService.findByUserId(userId);
         Product product = productDAO.findById(productName).orElseThrow(() -> new BadRequestException("Product whit id " + productName + " does not exist!"));
         List<GroceryShoppingQuantity> groceryShoppingQuantity = this.groceryShoppingQuantityDAO.findByGroceryShoppingId(groceryShopping.getId());

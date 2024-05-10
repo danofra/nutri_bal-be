@@ -33,13 +33,13 @@ public class GroceryShoppingQuantityController {
     public void updateGroceryShoppingQuantity(@AuthenticationPrincipal User user,
                                               @PathVariable String productName,
                                               @RequestParam int quantity) {
-        groceryShoppingQuantityService.findByUserIdAndProductIdAndUpdateQuantity(user.getId(), productName, quantity);
+        groceryShoppingQuantityService.findByUserIdAndProductNameAndUpdateQuantity(user.getId(), productName, quantity);
     }
 
     @DeleteMapping("/me")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteGroceryShoppingQuantity(@AuthenticationPrincipal User user,
                                               @RequestParam String productName) {
-        groceryShoppingQuantityService.findByUserIdAndProductIdAndDelete(user.getId(), productName);
+        groceryShoppingQuantityService.findByUserIdAndProductNameAndDelete(user.getId(), productName);
     }
 }

@@ -15,7 +15,9 @@ public class FoodStorageService {
 
     public FoodStorageResponseDTO save(User userId) {
         FoodStorage foodStorage = new FoodStorage(userId);
-        foodStorageDAO.save(foodStorage);
+        if (foodStorageDAO.findByUserId(userId.getId()).isEmpty()) {
+            foodStorageDAO.save(foodStorage);
+        }
         return new FoodStorageResponseDTO(userId.getName(), userId.getSurname(), foodStorage.getId());
     }
 

@@ -1,4 +1,10 @@
 package danofra.nutri_balbe.payloads;
 
-public record UserLoginDTO(String email, String password) {
+import jakarta.validation.constraints.NotEmpty;
+
+public record UserLoginDTO(
+        @NotEmpty(message = "Inserisci l'email")
+        String email,
+        @NotEmpty(message = "Inserisci la password")
+        String password) {
 }

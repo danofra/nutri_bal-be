@@ -43,6 +43,10 @@ public class User implements UserDetails {
     private String avatar;
     @OneToOne(mappedBy = "user")
     private FoodStorage foodStorage;
+    @OneToOne(mappedBy = "user")
+    private GroceryShopping groceryShopping;
+    @OneToMany(mappedBy = "user")
+    private List<Meals> meals;
 
     public User(String name, String surname, String email, String password, LocalDate date_of_birth, Gender gender, Physical_activity physical_activity, String nationality, String city_of_residence) {
         this.name = name;

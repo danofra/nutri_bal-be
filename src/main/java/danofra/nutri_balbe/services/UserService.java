@@ -62,7 +62,7 @@ public class UserService {
     }
 
     public User findByEmail(String email) {
-        return this.userDAO.findByEmail(email).orElseThrow(() -> new NotFoundException("User with email " + email + " not found!"));
+        return this.userDAO.findByEmail(email).orElseThrow(() -> new NotFoundException("Attenzione, l'utente con email " + email + " non esiste, registrati!"));
     }
 
     public void findByEmailAndDelete(String email) {

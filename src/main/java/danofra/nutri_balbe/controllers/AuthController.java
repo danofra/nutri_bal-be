@@ -24,7 +24,10 @@ public class AuthController {
     private UserService userService;
 
     @PostMapping("/login")
-    public UserLoginResponseDTO login(@RequestBody UserLoginDTO payload) {
+    public UserLoginResponseDTO login(@RequestBody @Validated UserLoginDTO payload, BindingResult result) {
+        if (result.hasErrors()) {
+            throw new BadRequestException(result.getAllErrors());
+        }
         return new UserLoginResponseDTO(this.authService.authenticateUserAndToken(payload));
     }
 

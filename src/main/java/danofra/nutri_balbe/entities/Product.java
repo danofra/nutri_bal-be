@@ -26,6 +26,9 @@ public class Product {
     @JsonIgnore
     @OneToMany(mappedBy = "product")
     private List<FoodStorageQuantity> foodStorageQuantity;
+    @JsonIgnore
+    @OneToMany(mappedBy = "product")
+    private List<MealsQuantity> mealsQuantity;
 
     public Product(String name, String description, int kcal, String image) {
         this.name = name;
@@ -33,5 +36,4 @@ public class Product {
         this.kcal = kcal;
         this.image = image;
     }
-
 }

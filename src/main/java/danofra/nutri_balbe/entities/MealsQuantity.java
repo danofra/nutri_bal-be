@@ -1,5 +1,6 @@
 package danofra.nutri_balbe.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ public class MealsQuantity {
     @ManyToOne
     @JoinColumn(name = "product_name")
     private Product product;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "meals_id")
     private Meals meals;

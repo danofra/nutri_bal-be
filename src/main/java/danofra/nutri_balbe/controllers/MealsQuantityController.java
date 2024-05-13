@@ -3,11 +3,14 @@ package danofra.nutri_balbe.controllers;
 import danofra.nutri_balbe.entities.User;
 import danofra.nutri_balbe.payloads.MealsQuantityDTO;
 import danofra.nutri_balbe.payloads.MealsQuantityResponseDTO;
+import danofra.nutri_balbe.payloads.MealsResponseDTO;
 import danofra.nutri_balbe.services.MealsQuantityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/mealsquantity")
@@ -20,10 +23,10 @@ public class MealsQuantityController {
         return mealsQuantityService.save(user, body);
     }
 
-//    @GetMapping("/me")
-//    public MealsQuantityResponseDTO getMealsQuantity(@AuthenticationPrincipal User user, @Validated @RequestBody MealsQuantityDTO body) {
-//        return mealsQuantityService.findByUserIdAndMealQuantity(user, body);
-//    }
+    @GetMapping("/me")
+    public List<MealsResponseDTO> findAllMealsQuantity(@AuthenticationPrincipal User user, @RequestParam int month, @RequestParam int year) {
+        return mealsQuantityService.findByUserIdMonthAndYear(user, month, year);
+    }
 
     @PutMapping("/me")
     public void updateMealsQuantity(@AuthenticationPrincipal User user,

@@ -1,7 +1,9 @@
 package danofra.nutri_balbe.payloads;
 
+import danofra.nutri_balbe.entities.MealsQuantity;
 import danofra.nutri_balbe.enums.Type_meals;
 
-public record MealsResponseDTO(String name, String surname, int id, Type_meals type_meals, int day, int month,
-                               int year) {
+import java.util.List;
+
+public record MealsResponseDTO(Type_meals type_meals, int day, List<MealsQuantity> mealsQuantity) {
 }

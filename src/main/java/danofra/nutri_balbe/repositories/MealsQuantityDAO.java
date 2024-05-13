@@ -23,5 +23,8 @@ public interface MealsQuantityDAO extends JpaRepository<MealsQuantity, Integer> 
                                                    @Param("typeMeals") Type_meals typeMeals,
                                                    @Param("userId") User userId);
 
+    @Query("SELECT m FROM Meals m WHERE m.user = :userId AND m.month = CAST(:month AS int) AND m.year = CAST(:year AS int)")
+    List<Meals> findByUserIdMonthAndYear(@Param("userId") User userId, @Param("month") int month, @Param("year") int year);
+
 
 }

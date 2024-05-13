@@ -3,7 +3,7 @@ package danofra.nutri_balbe.controllers;
 import danofra.nutri_balbe.entities.Meals;
 import danofra.nutri_balbe.entities.User;
 import danofra.nutri_balbe.payloads.MealsDTO;
-import danofra.nutri_balbe.payloads.MealsResponseDTO;
+import danofra.nutri_balbe.payloads.MealsSaveResponseDTO;
 import danofra.nutri_balbe.services.MealsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,7 +24,7 @@ public class MealsController {
     }
 
     @PostMapping("/me")
-    public MealsResponseDTO saveMeals(@AuthenticationPrincipal User user, @RequestBody MealsDTO mealsDTO) {
+    public MealsSaveResponseDTO saveMeals(@AuthenticationPrincipal User user, @RequestBody MealsDTO mealsDTO) {
         return mealsService.save(mealsDTO, user);
     }
 

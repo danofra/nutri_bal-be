@@ -28,17 +28,17 @@ public class MealsQuantityController {
         return mealsQuantityService.findByUserIdMonthAndYear(user, month, year);
     }
 
-    @PutMapping("/me")
+    @PutMapping("/me/{mealsquantityId}")
     public void updateMealsQuantity(@AuthenticationPrincipal User user,
-                                    @RequestBody MealsQuantityDTO body,
+                                    @PathVariable int mealsquantityId,
                                     @RequestParam int quantity) {
-        mealsQuantityService.findByUserIdAndMealsquantityAndUpdateQuantity(user, body, quantity);
+        mealsQuantityService.findByUserIdAndMealsquantityAndUpdateQuantity(user, mealsquantityId, quantity);
     }
 
-    @DeleteMapping("/me")
+    @DeleteMapping("/me/{mealsquantityId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteMealsQuantity(@AuthenticationPrincipal User user, @RequestBody MealsQuantityDTO body) {
-        mealsQuantityService.findByUserIdAndMealquantityAndDelete(user, body);
+    public void deleteMealsQuantity(@AuthenticationPrincipal User user, @PathVariable int mealsquantityId) {
+        mealsQuantityService.findByUserIdAndMealquantityAndDelete(user, mealsquantityId);
     }
 
 

@@ -14,6 +14,8 @@ import java.util.Optional;
 public interface MealsQuantityDAO extends JpaRepository<MealsQuantity, Integer> {
     List<MealsQuantity> findByMealsId(int id);
 
+    Optional<MealsQuantity> findById(int id);
+
     Optional<MealsQuantity> findByMealsIdAndProductName(int mealsId, String productName);
 
     @Query("SELECT m FROM Meals m WHERE m.day = :day AND m.month = :month AND m.year = :year AND m.type_meals = :typeMeals AND m.user = :userId")

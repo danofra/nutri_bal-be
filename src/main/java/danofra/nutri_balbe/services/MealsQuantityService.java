@@ -82,32 +82,16 @@ public class MealsQuantityService {
         return newListMeals;
     }
 
-    public MealsQuantityResponseDTO findByUserIdAndMealsquantityAndUpdateQuantity(User user, MealsQuantityDTO newMealsQuantity, int quantity) {
-        Optional<Meals> existingMeal = mealsQuantityDAO.findByDayMonthYearAndTypeMeals(newMealsQuantity.day(), newMealsQuantity.month(), newMealsQuantity.year(), Type_meals.valueOf(newMealsQuantity.type_meals()), user);
-        Product product = productDAO.findByName(newMealsQuantity.productName()).orElseThrow(() -> new BadRequestException("Product " + newMealsQuantity.productName() + " does not exist!"));
-        MealsQuantityResponseDTO response = null;
-        if (existingMeal.isPresent()) {
-            for (MealsQuantity mealsQuantity1 : existingMeal.get().getMealsQuantity()) {
-                if (mealsQuantity1.getProduct().getName().equals(product.getName())) {
-                    mealsQuantity1.setQuantity(quantity);
-                    mealsQuantityDAO.save(mealsQuantity1);
-                    response = new MealsQuantityResponseDTO(mealsQuantity1.getQuantity(), mealsQuantity1.getProduct().getName());
-                }
-            }
-        }
-        return response;
+    public MealsQuantityResponseDTO findByUserIdAndMealsquantityAndUpdateQuantity(User user, int mealsQuantityId, int quantity) {
+        MealsQuantity mealsQuantity = mealsQuantityDAO.findById(mealsQuantityId).orElseThrow(() -> new BadRequestException("MealsQuantity " + mealsQuantityId + " does not exist!"));
+        mealsQuantity.setQuantity(quantity);
+        mealsQuantityDAO.save(mealsQuantity);
+        return new MealsQuantityResponseDTO(mealsQuantity.getQuantity(), mealsQuantity.getProduct().getName());
     }
 
-    public void findByUserIdAndMealquantityAndDelete(User user, MealsQuantityDTO mealsQuantity) {
-        Optional<Meals> existingMeal = mealsQuantityDAO.findByDayMonthYearAndTypeMeals(mealsQuantity.day(), mealsQuantity.month(), mealsQuantity.year(), Type_meals.valueOf(mealsQuantity.type_meals()), user);
-        Product product = productDAO.findByName(mealsQuantity.productName()).orElseThrow(() -> new BadRequestException("Product " + mealsQuantity.productName() + " does not exist!"));
-        if (existingMeal.isPresent()) {
-            for (MealsQuantity mealsQuantity1 : existingMeal.get().getMealsQuantity()) {
-                if (mealsQuantity1.getProduct().getName().equals(product.getName())) {
-                    mealsQuantityDAO.delete(mealsQuantity1);
-                }
-            }
-        }
+    public void findByUserIdAndMealquantityAndDelete(User user, int mealsQuantityId) {
+        MealsQuantity mealsQuantity = mealsQuantityDAO.findById(mealsQuantityId).orElseThrow(() -> new BadRequestException("MealsQuantity " + mealsQuantityId + " does not exist!"));
+        mealsQuantityDAO.delete(mealsQuantity);
     }
 }
 

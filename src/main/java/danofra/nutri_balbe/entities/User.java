@@ -1,5 +1,6 @@
 package danofra.nutri_balbe.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import danofra.nutri_balbe.enums.Gender;
 import danofra.nutri_balbe.enums.Physical_activity;
@@ -41,10 +42,13 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
     private String avatar;
+    @JsonIgnore
     @OneToOne(mappedBy = "user")
     private FoodStorage foodStorage;
+    @JsonIgnore
     @OneToOne(mappedBy = "user")
     private GroceryShopping groceryShopping;
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Meals> meals;
 

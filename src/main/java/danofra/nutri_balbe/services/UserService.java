@@ -9,6 +9,7 @@ import danofra.nutri_balbe.exceptions.NotFoundException;
 import danofra.nutri_balbe.payloads.UserDTO;
 import danofra.nutri_balbe.payloads.UserResponseDTO;
 import danofra.nutri_balbe.repositories.UserDAO;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -65,9 +66,15 @@ public class UserService {
         return this.userDAO.findByEmail(email).orElseThrow(() -> new NotFoundException("Attenzione, l'utente con email " + email + " non esiste, registrati!"));
     }
 
-    public void findByEmailAndDelete(String email) {
-        User user = this.findByEmail(email);
-        this.userDAO.delete(user);
+    @Transactional
+    public void findByIdAndDelete(int userId) {
+        userDAO.deleteMealsQuantitiesByUserId(userId);
+        userDAO.deleteMealsByUserId(userId);
+        userDAO.deleteFoodStorageQuantitiesByUserId(userId);
+        userDAO.deleteFoodStorageByUserId(userId);
+        userDAO.deleteGroceryShoppingQuantitiesByUserId(userId);
+        userDAO.deleteGroceryShoppingByUserId(userId);
+        userDAO.deleteUserById(userId);
     }
 
     public User findByIdAndUpdate(int id, UserDTO newUser) {
@@ -81,7 +88,7 @@ public class UserService {
         user.setPhysical_activity(newUser.physical_activity());
         user.setNationality(newUser.nationality());
         user.setCity_of_residence(newUser.city_of_residence());
-        user.setAvatar("https://ui-avatars.com/api/?name=" + newUser.name() + "+" + newUser.surname());
+//        user.setAvatar("https://ui-avatars.com/api/?name=" + newUser.name() + "+" + newUser.surname());
         return this.userDAO.save(user);
     }
 

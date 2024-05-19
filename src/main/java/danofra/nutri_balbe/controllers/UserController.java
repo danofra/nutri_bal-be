@@ -28,31 +28,6 @@ public class UserController {
         return this.userService.getUser(page, size, sortBy);
     }
 
-    @GetMapping("/{email}")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public User findByEmail(@PathVariable String email) {
-        return this.userService.findByEmail(email);
-    }
-
-    @DeleteMapping("/{userId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public void findByEmailAndDelete(@PathVariable String email) {
-        userService.findByEmailAndDelete(email);
-    }
-
-    @PostMapping("/upload")
-    @ResponseStatus(HttpStatus.OK)
-    public String uploadAvatar(@RequestParam("avatar") MultipartFile image) throws IOException {
-        return this.userService.upload(image);
-    }
-
-    @PostMapping("/upload/{userId}")
-    public String uploadUserImage(@RequestParam("avatar") MultipartFile image, @PathVariable int userId) throws IOException {
-        this.userService.uploadUserImageToId(image, userId);
-        return this.userService.upload(image);
-    }
-
     @GetMapping("/me")
     public User getProfile(@AuthenticationPrincipal User currentAuthenticatedUser) {
         return currentAuthenticatedUser;
@@ -66,6 +41,18 @@ public class UserController {
     @DeleteMapping("/me")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteProfile(@AuthenticationPrincipal User currentAuthenticatedUser) {
-        this.userService.findByEmailAndDelete(currentAuthenticatedUser.getEmail());
+        this.userService.findByIdAndDelete(currentAuthenticatedUser.getId());
+    }
+
+    @PostMapping("/upload")
+    @ResponseStatus(HttpStatus.OK)
+    public String uploadAvatar(@RequestParam("avatar") MultipartFile image) throws IOException {
+        return this.userService.upload(image);
+    }
+
+    @PostMapping("/me/upload")
+    public String uploadUserImage(@RequestParam("avatar") MultipartFile image, @AuthenticationPrincipal User currentAuthenticatedUser) throws IOException {
+        this.userService.uploadUserImageToId(image, currentAuthenticatedUser.getId());
+        return this.userService.upload(image);
     }
 }

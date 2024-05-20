@@ -1,6 +1,7 @@
 package danofra.nutri_balbe.controllers;
 
 import danofra.nutri_balbe.entities.User;
+import danofra.nutri_balbe.enums.Unit_of_measure;
 import danofra.nutri_balbe.payloads.MealsQuantityDTO;
 import danofra.nutri_balbe.payloads.MealsQuantityResponseDTO;
 import danofra.nutri_balbe.payloads.MealsResponseDTO;
@@ -31,8 +32,10 @@ public class MealsQuantityController {
     @PutMapping("/me/{mealsquantityId}")
     public void updateMealsQuantity(@AuthenticationPrincipal User user,
                                     @PathVariable int mealsquantityId,
-                                    @RequestParam int quantity) {
-        mealsQuantityService.findByUserIdAndMealsquantityAndUpdateQuantity(user, mealsquantityId, quantity);
+                                    @RequestParam int quantity,
+                                    @RequestParam Unit_of_measure unitOfMeasure
+    ) {
+        mealsQuantityService.findByUserIdAndMealsquantityAndUpdateQuantity(user, mealsquantityId, quantity, unitOfMeasure);
     }
 
     @DeleteMapping("/me/{mealsquantityId}")

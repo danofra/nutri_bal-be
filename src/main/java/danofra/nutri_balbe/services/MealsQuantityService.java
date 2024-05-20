@@ -5,6 +5,7 @@ import danofra.nutri_balbe.entities.MealsQuantity;
 import danofra.nutri_balbe.entities.Product;
 import danofra.nutri_balbe.entities.User;
 import danofra.nutri_balbe.enums.Type_meals;
+import danofra.nutri_balbe.enums.Unit_of_measure;
 import danofra.nutri_balbe.exceptions.BadRequestException;
 import danofra.nutri_balbe.payloads.MealsQuantityDTO;
 import danofra.nutri_balbe.payloads.MealsQuantityResponseDTO;
@@ -54,8 +55,9 @@ public class MealsQuantityService {
                 mealsQuantity.setMeals(existingMeal.get());
                 mealsQuantity.setProduct(product);
                 mealsQuantity.setQuantity(newMealsQuantity.quantity());
+                mealsQuantity.setUnit_of_measure(newMealsQuantity.unit_of_measure());
                 mealsQuantityDAO.save(mealsQuantity);
-                return new MealsQuantityResponseDTO(mealsQuantity.getQuantity(), mealsQuantity.getProduct().getName());
+                return new MealsQuantityResponseDTO(mealsQuantity.getQuantity(), mealsQuantity.getUnit_of_measure(), mealsQuantity.getProduct().getName());
             }
         } else {
             Meals meals = new Meals();
@@ -64,12 +66,13 @@ public class MealsQuantityService {
             meals.setDay(newMealsQuantity.day());
             meals.setMonth(newMealsQuantity.month());
             meals.setYear(newMealsQuantity.year());
-            MealsQuantity mealsQuantity = new MealsQuantity(newMealsQuantity.quantity(), product, meals);
+            MealsQuantity mealsQuantity;
+            mealsQuantity = new MealsQuantity(newMealsQuantity.quantity(), newMealsQuantity.unit_of_measure(), product, meals);
             mealsDAO.save(meals);
             mealsQuantityDAO.save(mealsQuantity);
-            return new MealsQuantityResponseDTO(mealsQuantity.getQuantity(), mealsQuantity.getProduct().getName());
+            return new MealsQuantityResponseDTO(mealsQuantity.getQuantity(), newMealsQuantity.unit_of_measure(), mealsQuantity.getProduct().getName());
         }
-        return new MealsQuantityResponseDTO(currentMeals.getQuantity(), currentMeals.getProduct().getName());
+        return new MealsQuantityResponseDTO(currentMeals.getQuantity(), newMealsQuantity.unit_of_measure(), currentMeals.getProduct().getName());
     }
 
     public List<MealsResponseDTO> findByUserIdMonthAndYear(User user, int month, int year) {
@@ -82,11 +85,12 @@ public class MealsQuantityService {
         return newListMeals;
     }
 
-    public MealsQuantityResponseDTO findByUserIdAndMealsquantityAndUpdateQuantity(User user, int mealsQuantityId, int quantity) {
+    public MealsQuantityResponseDTO findByUserIdAndMealsquantityAndUpdateQuantity(User user, int mealsQuantityId, int quantity, Unit_of_measure unit_of_measure) {
         MealsQuantity mealsQuantity = mealsQuantityDAO.findById(mealsQuantityId).orElseThrow(() -> new BadRequestException("MealsQuantity " + mealsQuantityId + " does not exist!"));
         mealsQuantity.setQuantity(quantity);
+        mealsQuantity.setUnit_of_measure(unit_of_measure);
         mealsQuantityDAO.save(mealsQuantity);
-        return new MealsQuantityResponseDTO(mealsQuantity.getQuantity(), mealsQuantity.getProduct().getName());
+        return new MealsQuantityResponseDTO(mealsQuantity.getQuantity(), mealsQuantity.getUnit_of_measure(), mealsQuantity.getProduct().getName());
     }
 
     public void findByUserIdAndMealquantityAndDelete(User user, int mealsQuantityId) {

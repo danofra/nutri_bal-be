@@ -1,0 +1,140 @@
+name;category;description;image;kcal
+Acciughe;Frutti di mare;Frutti di mare;http;130
+Acciughe in salamoia;Frutti di mare;Frutti di mare;http;210
+Acciughe in olio;Frutti di mare;Frutti di mare;http;230
+Anguille;Frutti di mare;Frutti di mare;http;184
+Aragosta;Frutti di mare;Crostacei e molluschi;http;77
+Calamari;Frutti di mare;Crostacei e molluschi;http;92
+Calamari surgelati;Frutti di mare;Crostacei e molluschi;http;92
+Granchio blu;Frutti di mare;Crostacei e molluschi;http;83
+Carne di granchio in scatola;Frutti di mare;Crostacei e molluschi;http;101
+Cozze;Frutti di mare;Crostacei e molluschi;http;86
+Ostriche;Frutti di mare;Crostacei e molluschi;http;68
+Muggine;Pesce;Pesce;http;85
+Cernia;Pesce;Pesce;http;92
+Merluzzo;Pesce;Pesce;http;82
+Dentice;Pesce;Pesce;http;105
+Sogliola;Pesce;Pesce;http;70
+Pesce spada;Pesce;Pesce;http;111
+Orata;Pesce;Pesce;http;96
+Agnello;Carne rossa;Carne;http;294
+Vitello;Carne rossa;Carne;http;172
+Capra;Carne rossa;Carne;http;143
+Cervo;Carne rossa;Carne;http;158
+Maiale;Carne rossa;Carne;http;242
+Manzo;Carne rossa;Carne;http;250
+Cavallo;Carne rossa;Carne;http;133
+Coniglio;Carne Bianca;Carne;http;173
+Anatra;Carne Bianca;Carne;http;337
+Faraona;Carne Bianca;Carne;http;155
+Pollo;Carne Bianca;Carne;http;165
+Asiago;Formaggi;Latticini;http;387
+Brie;Formaggi;Latticini;http;334
+Camembert;Formaggi;Latticini;http;300
+Cheddar;Formaggi;Latticini;http;403
+Caciocavallo;Formaggi;Latticini;http;388
+Caciocavallo affumicato;Formaggi;Latticini;http;400
+Caciotta romana;Formaggi;Latticini;http;390
+Caciotta toscana;Formaggi;Latticini;http;390
+Caciottina fresca;Formaggi;Latticini;http;365
+Feta;Formaggi;Latticini;http;265
+Edam;Formaggi;Latticini;http;357
+Gouda;Formaggi;Latticini;http;356
+Gouda stagionato;Formaggi;Latticini;http;411
+Emmental;Formaggi;Latticini;http;384
+Gorgonzola;Formaggi;Latticini;http;353
+Gorgonzola con noci;Formaggi;Latticini;http;365
+Grana;Formaggi;Latticini;http;431
+Fontina;Formaggi;Latticini;http;389
+Mozzarella;Formaggi;Latticini;http;280
+Mozzarella di bufala;Formaggi;Latticini;http;288
+Mascarpone;Formaggi;Latticini;http;450
+Montasio;Formaggi;Latticini;http;366
+Italico;Formaggi;Latticini;http;352
+Pecorino;Formaggi;Latticini;http;387
+Parmigiano;Formaggi;Latticini;http;431
+Taleggio;Formaggi;Latticini;http;304
+Latte di bufala;Latte;Latticini;http;97
+Latte di capra;Latte;Latticini;http;69
+Latte di pecora;Latte;Latticini;http;95
+Latte di mandorla;Latte;Latticini;http;17
+Latte di soia;Latte;Latticini;http;33
+Latte di mucca;Latte;Latticini;http;42
+Albicocche;Frutta fresca;Frutta;http;48
+Ananas;Frutta fresca;Frutta;http;50
+Banane;Frutta fresca;Frutta;http;89
+Arance;Frutta fresca;Frutta;http;47
+Mele;Frutta fresca;Frutta;http;52
+Melograni;Frutta fresca;Frutta;http;83
+Fichi;Frutta fresca;Frutta;http;74
+Pesche;Frutta fresca;Frutta;http;39
+Fragole;Frutta fresca;Frutta;http;32
+Limoni;Frutta fresca;Frutta;http;29
+Mango;Frutta fresca;Frutta;http;60
+Papaya;Frutta fresca;Frutta;http;43
+Kiwi;Frutta fresca;Frutta;http;61
+Lamponi;Frutta fresca;Frutta;http;52
+Mirtilli;Frutta fresca;Frutta;http;57
+Gelsi;Frutta fresca;Frutta;http;43
+Cachi;Frutta fresca;Frutta;http;81
+Albicocche secche;Frutta secca;Frutta;http;241
+Prugne;Frutta secca;Frutta;http;46
+Uva passa;Frutta secca;Frutta;http;299
+Datteri;Frutta secca;Frutta;http;282
+Mandorle;Frutta secca;Frutta;http;579
+Nocciole;Frutta secca;Frutta;http;628
+Noci;Frutta secca;Frutta;http;654
+Aglio;Verdure fresche;Verdure;http;149
+Cavolo;Verdure fresche;Verdure;http;25
+Carote;Verdure fresche;Verdure;http;41
+Cavolfiore;Verdure fresche;Verdure;http;25
+Broccoli;Verdure fresche;Verdure;http;34
+Asparagi;Verdure fresche;Verdure;http;20
+Carciofi;Verdure fresche;Verdure;http;47
+Barbabietole;Verdure fresche;Verdure;http;43
+Fiori di zucca;Verdure fresche;Verdure;http;12
+Melanzane;Verdure fresche;Verdure;http;25
+Finocchio;Verdure fresche;Verdure;http;31
+Lattuga;Verdure fresche;Verdure;http;15
+Porro;Verdure fresche;Verdure;http;61
+Spinaci;Verdure fresche;Verdure;http;23
+Pomodori;Verdure fresche;Verdure;http;18
+Peperoni;Verdure fresche;Verdure;http;31
+Cetrioli;Verdure fresche;Verdure;http;16
+Cipolle;Verdure fresche;Verdure;http;40
+Patate;Verdure fresche;Verdure;http;77
+Aceto;Condimenti;Varie;http;18
+Olio d'oliva;Condimenti;Varie;http;884
+Olio d'oliva extravergine;Condimenti;Varie;http;884
+Olio di girasole;Condimenti;Varie;http;884
+Olio di arachidi;Condimenti;Varie;http;884
+Olio di sesamo;Condimenti;Varie;http;884
+Olio di soia;Condimenti;Varie;http;884
+Olio di cocco;Condimenti;Varie;http;862
+Olio di palma;Condimenti;Varie;http;884
+Senape;Condimenti;Varie;http;66
+Ketchup;Condimenti;Varie;http;112
+Maionese;Condimenti;Varie;http;680
+Acqua;Analcolici;Bevande;http;0
+Acqua tonica;Analcolici;Bevande;http;37
+Bibita dietetica;Analcolici;Bevande;http;1
+Aranciata;Analcolici;Bevande;http;41
+Cocacola;Analcolici;Bevande;http;42
+Succhi di frutta;Analcolici;Bevande;http;46
+Birra;Alcolici;Bevande;http;43
+Vino;Alcolici;Bevande;http;83
+Champagne;Alcolici;Bevande;http;90
+Brandy;Alcolici;Bevande;http;231
+Cognac;Alcolici;Bevande;http;231
+Grappa;Alcolici;Bevande;http;231
+Liquori;Alcolici;Bevande;http;327
+Sambuca;Alcolici;Bevande;http;350
+Cioccolato;Dolci;Dolci e Dessert;http;546
+Caramelle;Dolci;Dolci e Dessert;http;394
+Gommose;Dolci;Dolci e Dessert;http;352
+Liquirizia;Dolci;Dolci e Dessert;http;375
+Meringa;Dolci;Dolci e Dessert;http;387
+Marshmallow;Dolci;Dolci e Dessert;http;318
+Torrone;Dolci;Dolci e Dessert;http;480
+Sorbetto;Gelato;Dolci e Dessert;http;130
+Gelato;Gelato;Dolci e Dessert;http;207

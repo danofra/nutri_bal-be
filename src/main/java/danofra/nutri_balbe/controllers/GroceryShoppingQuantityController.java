@@ -24,7 +24,7 @@ public class GroceryShoppingQuantityController {
     @GetMapping("/me")
     public Page<GroceryShoppingQuantity> getGroceryShoppingQuantity(@AuthenticationPrincipal User user,
                                                                     @RequestParam(defaultValue = "0") int page,
-                                                                    @RequestParam(defaultValue = "10") int size,
+                                                                    @RequestParam(defaultValue = "1000") int size,
                                                                     @RequestParam(defaultValue = "id") String sortBy) {
         return groceryShoppingQuantityService.findByUserId(user.getId(), page, size, sortBy);
     }

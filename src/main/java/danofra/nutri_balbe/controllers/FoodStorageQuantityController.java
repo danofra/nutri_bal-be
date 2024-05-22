@@ -23,7 +23,7 @@ public class FoodStorageQuantityController {
     @GetMapping("/me")
     public Page<FoodStorageQuantity> getMyFoodStorageQuantity(@AuthenticationPrincipal User user,
                                                               @RequestParam(defaultValue = "0") int page,
-                                                              @RequestParam(defaultValue = "10") int size,
+                                                              @RequestParam(defaultValue = "1000") int size,
                                                               @RequestParam(defaultValue = "id") String sortBy) {
         return foodStorageQuantityService.findByUserId(user.getId(), page, size, sortBy);
     }

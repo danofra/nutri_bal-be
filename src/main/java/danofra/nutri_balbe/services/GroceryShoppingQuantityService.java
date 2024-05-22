@@ -48,7 +48,7 @@ public class GroceryShoppingQuantityService {
     }
 
     public Page<GroceryShoppingQuantity> findByUserId(int userId, int page, int size, String sortBy) {
-        if (size > 10) size = 10;
+        if (size > 1000) size = 1000;
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
         return this.groceryShoppingQuantityDAO.findByGroceryShoppingId(groceryShoppingService.findByUserId(userId).getId(), pageable);
     }

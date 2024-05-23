@@ -13,9 +13,6 @@ NutriBal is a web app designed to provide users with a comprehensive tool to man
   <img src="https://img.shields.io/badge/IntelliJ%20IDEA-000000?style=for-the-badge&logo=intellij-idea&logoColor=white" alt="IntelliJ IDEA">
 
 ## Technologies Used
-### Front-end:
-https://github.com/danofra/nutri_bal-fe
-
 ### Back-end:
 
 <p>
@@ -23,3 +20,7 @@ https://github.com/danofra/nutri_bal-fe
   <img src="https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL">
   <img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white" alt="Spring">
 </p>
+
+### Front-end:
+https://github.com/danofra/nutri_bal-fe
+

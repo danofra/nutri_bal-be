@@ -1,4 +1,4 @@
-# NutriBal
+# NutriBal 🍝
 
 NutriBal is a web app designed to provide users with a comprehensive tool to manage their diet effectively and consciously. Users can log their daily meals using an interactive calendar, manage their shopping list by adding, modifying, and deleting items, and monitor their pantry to manage food supplies and simplify future shopping planning. Additionally, NutriBal offers an informative section with a weekly indicative food pyramid and an alphabetical list of foods categorized by type.
 

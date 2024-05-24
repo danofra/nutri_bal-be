@@ -18,8 +18,8 @@ public class ProductController {
 
     @GetMapping("")
     public Page<Product> getAllProduct(@RequestParam(defaultValue = "0") int page,
-                                       @RequestParam(defaultValue = "10") int size,
-                                       @RequestParam(defaultValue = "id") String sortBy) {
+                                       @RequestParam(defaultValue = "1000") int size,
+                                       @RequestParam(defaultValue = "name") String sortBy) {
         return this.productService.getProduct(page, size, sortBy);
     }
 
@@ -32,7 +32,6 @@ public class ProductController {
     public Product findByName(@PathVariable String productName) {
         return this.productService.findByName(productName);
     }
-
 
     @DeleteMapping("/{productName}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
